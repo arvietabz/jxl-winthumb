@@ -1,0 +1,1 @@
+/workspace/target/x86_64-pc-windows-gnu/release/jxl_winthumb.dll: /workspace/build.rs /workspace/src/dll.rs /workspace/src/guid.rs /workspace/src/lib.rs /workspace/src/properties.rs /workspace/src/registry/kindmap.rs /workspace/src/registry/property_handler.rs /workspace/src/registry.rs /workspace/src/winstream.rs

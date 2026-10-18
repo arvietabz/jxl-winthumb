@@ -5,7 +5,7 @@
 #![allow(unused_must_use)]
 #![allow(non_snake_case)]
 
-use jxl_oxide::{JxlImage, PixelFormat};
+use jxl_oxide::{EnumColourEncoding, JxlImage, PixelFormat, RenderingIntent};
 use std::{cell::RefCell, io::BufReader, rc::Rc};
 use windows::core::{GUID, Interface, implement};
 
@@ -77,9 +77,16 @@ impl IWICBitmapDecoder_Impl for JXLWICBitmapDecoder_Impl {
         let stream = WinStream::from(pistream.unwrap());
         let reader = BufReader::new(stream);
 
-        let image = JxlImage::builder().read(reader).map_err(|err| {
+        let mut image = JxlImage::builder().read(reader).map_err(|err| {
             windows::core::Error::new(WINCODEC_ERR_BADIMAGE, format!("{:?}", err))
         })?;
+
+        // HDR tone mapping support (like ImageGlass): WIC consumers such as
+        // Explorer thumbnails render on SDR displays, so ask jxl-oxide to
+        // tone-map HDR (PQ/HLG) images down to SDR during rendering.
+        if image.hdr_type().is_some() {
+            image.request_color_encoding(EnumColourEncoding::srgb(RenderingIntent::Perceptual));
+        }
 
         let (width, height, _left, _top) = image.image_header().metadata.apply_orientation(
             image.image_header().size.width,

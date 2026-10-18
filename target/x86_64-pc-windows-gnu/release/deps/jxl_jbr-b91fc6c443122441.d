@@ -1,0 +1,12 @@
+/workspace/target/x86_64-pc-windows-gnu/release/deps/jxl_jbr-b91fc6c443122441.d: /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/lib.rs /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/bit_writer.rs /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/error.rs /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/huffman.rs /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/reconstruct.rs /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/reconstruct/scan.rs
+
+/workspace/target/x86_64-pc-windows-gnu/release/deps/libjxl_jbr-b91fc6c443122441.rlib: /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/lib.rs /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/bit_writer.rs /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/error.rs /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/huffman.rs /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/reconstruct.rs /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/reconstruct/scan.rs
+
+/workspace/target/x86_64-pc-windows-gnu/release/deps/libjxl_jbr-b91fc6c443122441.rmeta: /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/lib.rs /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/bit_writer.rs /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/error.rs /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/huffman.rs /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/reconstruct.rs /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/reconstruct/scan.rs
+
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/lib.rs:
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/bit_writer.rs:
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/error.rs:
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/huffman.rs:
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/reconstruct.rs:
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jxl-jbr-0.2.1/src/reconstruct/scan.rs:

@@ -1,0 +1,112 @@
+Windows Registry Editor Version 5.00
+
+; ============================================================
+; Manual registration for jxl-winthumb (jxl_winthumb.dll)
+; HDR tone-mapping build (v0.2.12 + moxcms/jxl-color patch)
+;
+; HOW TO USE:
+;   1. Copy jxl_winthumb.dll to a permanent location, e.g.
+;      C:\Program Files\jxl-winthumb\jxl_winthumb.dll
+;      (Do NOT register from Downloads/Temp - Explorer keeps the
+;       DLL loaded and stale paths break thumbnails.)
+;   2. Edit the 3 path occurrences below to match that location.
+;      Search for:  C:\\Program Files\\jxl-winthumb
+;   3. Merge: double-click this file, or from an elevated CMD:
+;      regedit /s register-jxl-winthumb.reg
+;   4. Restart explorer.exe (or reboot) so WIC re-enumerates decoders.
+;
+; To undo: run
+;   regsvr32 /u "C:\Program Files\jxl-winthumb\jxl_winthumb.dll"
+;   (or delete the same keys manually)
+; ============================================================
+
+; ---- 1. WIC decoder CLSID ----------------------------------
+[HKEY_CLASSES_ROOT\CLSID\{655896C6-B7D0-4D74-8AFB-A02ECE3F5E5A}]
+@="jxl-winthumb"
+"FriendlyName"="jxl-winthumb WIC Decoder"
+"VendorGUID"="{448D5EB7-6555-476B-A840-034CCA9AFE6E}"
+"MimeTypes"="image/jxl"
+"FileExtensions"=".jxl"
+
+[HKEY_CLASSES_ROOT\CLSID\{655896C6-B7D0-4D74-8AFB-A02ECE3F5E5A}\InProcServer32]
+@="C:\\Program Files\\jxl-winthumb\\jxl_winthumb.dll"
+"ThreadingModel"="Both"
+
+[HKEY_CLASSES_ROOT\CLSID\{655896C6-B7D0-4D74-8AFB-A02ECE3F5E5A}\Formats\{6FDDC324-4E0E-4B19-B1A7-F4CDF854DCAB}]
+
+[HKEY_CLASSES_ROOT\CLSID\{655896C6-B7D0-4D74-8AFB-A02ECE3F5E5A}\Patterns\0]
+"Position"=dword:00000000
+"Length"=dword:00000002
+"Pattern"=hex:ff,0a
+"Mask"=hex:ff,ff
+
+[HKEY_CLASSES_ROOT\CLSID\{655896C6-B7D0-4D74-8AFB-A02ECE3F5E5A}\Patterns\1]
+"Position"=dword:00000000
+"Length"=dword:0000000c
+"Pattern"=hex:00,00,00,0c,4a,58,4c,20,0d,0a,87,0a
+"Mask"=hex:ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff
+
+; ---- 2. Register decoder as a WIC "Instance" ---------------
+; (under the built-in WIC codec manager CLSID)
+[HKEY_CLASSES_ROOT\CLSID\{7ED96837-96F0-4812-B211-F13C24117ED3}\Instance\{655896C6-B7D0-4D74-8AFB-A02ECE3F5E5A}]
+"CLSID"="{655896C6-B7D0-4D74-8AFB-A02ECE3F5E5A}"
+"FriendlyName"="jxl-winthumb WIC Decoder"
+
+; ---- 3. Property handler CLSID -----------------------------
+[HKEY_CLASSES_ROOT\CLSID\{95FFE0F8-AB15-4751-A2F3-CFAFDBF13664}]
+@="jxl-winthumb"
+
+[HKEY_CLASSES_ROOT\CLSID\{95FFE0F8-AB15-4751-A2F3-CFAFDBF13664}\InProcServer32]
+@="C:\\Program Files\\jxl-winthumb\\jxl_winthumb.dll"
+"ThreadingModel"="Both"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\PropertySystem\PropertyHandlers\.jxl]
+@="{95FFE0F8-AB15-4751-A2F3-CFAFDBF13664}"
+
+; ---- 4. Explorer KindMap (treat .jxl as picture) -----------
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\KindMap]
+".jxl"="picture"
+
+; ---- 5. File extension association / ProgID ----------------
+[HKEY_CLASSES_ROOT\.jxl]
+@="jxlwinthumbfile"
+"Content Type"="image/jxl"
+"PerceivedType"="image"
+
+[HKEY_CLASSES_ROOT\.jxl\OpenWithProgids]
+"jxlwinthumbfile"=hex(0):
+
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.jxl]
+"FullDetails"="prop:System.PropGroup.Image;System.Image.Dimensions;System.Image.HorizontalSize;System.Image.VerticalSize;System.PropGroup.FileSystem;System.ItemNameDisplay;System.ItemType;System.ItemFolderPathDisplay;System.DateCreated;System.DateModified;System.Size;System.FileAttributes;System.OfflineAvailability;System.OfflineStatus;System.SharedWith;System.FileOwner;System.ComputerName"
+"PreviewDetails"="prop:*System.Image.Dimensions;*System.Size;*System.OfflineAvailability;*System.OfflineStatus;*System.DateCreated;*System.DateModified;*System.DateAccessed;*System.SharedWith"
+
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.jxl\ShellEx\ContextMenuHandlers\ShellImagePreview]
+@="{FFE2A43C-56B9-4bf5-9A79-CC6D4285608A}"
+
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.jxl\ShellEx\{E357CCC3-D2E2-4f2a-A1D9-36A0AD700C41}]
+@="{C7657C4A-9F68-40fa-A4DF-96BC08EB3551}"
+
+[HKEY_CLASSES_ROOT\jxlwinthumbfile]
+@="JXL File"
+
+[HKEY_CLASSES_ROOT\jxlwinthumbfile\shell\open]
+"MuiVerb"=hex(2):40,00,25,00,50,00,52,00,4f,00,47,00,52,00,41,00,4d,00,46,00,49,00,4c,\
+  00,45,00,53,00,25,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,20,\
+  00,50,00,68,00,6f,00,74,00,6f,00,20,00,56,00,69,00,65,00,77,00,65,00,72,\
+  00,5c,00,70,00,68,00,6f,00,74,00,6f,00,76,00,69,00,65,00,77,00,65,00,72,\
+  00,2e,00,64,00,6c,00,6c,00,2c,00,2d,00,33,00,30,00,34,00,33,00,00,00
+
+[HKEY_CLASSES_ROOT\jxlwinthumbfile\shell\open\command]
+@=hex(2):25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,\
+  00,5c,00,53,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,72,00,75,\
+  00,6e,00,64,00,6c,00,6c,00,33,00,32,00,2e,00,65,00,78,00,65,00,20,00,22,\
+  00,25,00,50,00,72,00,6f,00,67,00,72,00,61,00,6d,00,46,00,69,00,6c,00,65,\
+  00,73,00,25,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,20,00,50,\
+  00,68,00,6f,00,74,00,6f,00,20,00,56,00,69,00,65,00,77,00,65,00,72,00,5c,\
+  00,50,00,68,00,6f,00,74,00,6f,00,56,00,69,00,65,00,77,00,65,00,72,00,2e,\
+  00,64,00,6c,00,6c,00,22,00,2c,00,20,00,49,00,6d,00,61,00,67,00,65,00,56,\
+  00,69,00,65,00,77,00,5f,00,46,00,75,00,6c,00,6c,00,73,00,63,00,72,00,65,\
+  00,65,00,6e,00,20,00,25,00,31,00,00,00
+
+[HKEY_CLASSES_ROOT\jxlwinthumbfile\shell\open\DropTarget]
+@="{FFE2A43C-56B9-4bf5-9A79-CC6D4285608A}"
